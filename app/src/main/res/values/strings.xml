@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">XWeather</string>
     <string name="action_settings">Settings</string>
+
+    <string name="celsium">℃</string>
+    <string name="perc">%</string>
+    <string name="weather_wind">Ветер:</string>
+    <string name="weather_wind_dimen">м/с</string>
+    <string name="space">____</string>
+    <string name="weather_pressure">Давление:</string>
+    <string name="weather_pressure_dimen">мм. рт. ст.</string>
+    <string name="weather_humidity">Влажность:</string>
+    <string name="weather_humidity_dimen">%</string>
+
+    <string name="addCityOK">ОК</string>
+    <string name="addCityCancel">ОТМЕНА</string>
 </resources>
