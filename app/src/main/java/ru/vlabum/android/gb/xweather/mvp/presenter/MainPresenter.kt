@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.widget.ImageView
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import io.reactivex.CompletableObserver
 import io.reactivex.Scheduler
+import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import ru.vlabum.android.gb.xweather.mvp.model.entity.City
@@ -68,7 +71,7 @@ open class MainPresenter(val mainThreadScheduler: Scheduler, val imageLoader: II
 //        loadCities()
         cityListPresenter.getClickSubject()
             .subscribe { cityRowView ->
-//                viewState.showMessage(cityListPresenter.cities.get(cityRowView.getPos()).getName())
+                //                viewState.showMessage(cityListPresenter.cities.get(cityRowView.getPos()).getName())
                 loadWeather(cityListPresenter.cities.get(cityRowView.getPos()))
             }
     }
@@ -78,7 +81,10 @@ open class MainPresenter(val mainThreadScheduler: Scheduler, val imageLoader: II
             .subscribeOn(Schedulers.io())
             .observeOn(mainThreadScheduler)
             .subscribe(
-                { viewState.updateList() },
+                {
+                    Timber.d("Finished")
+                    loadCities()
+                },
                 { e -> e.printStackTrace() }
             )
     }
@@ -157,6 +163,5 @@ open class MainPresenter(val mainThreadScheduler: Scheduler, val imageLoader: II
                     e.message?.let { viewState.showMessage(it) }
                     e.printStackTrace()
                 })
-        return
     }
 }
