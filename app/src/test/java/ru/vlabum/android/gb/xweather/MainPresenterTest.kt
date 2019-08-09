@@ -83,9 +83,10 @@ class MainPresenterTest {
         component.inject(presenter)
         presenter.attachView(mainView)
         Mockito.verify(mainView).init()
-        Mockito.verify(mainView).showLoading()
+        Mockito.verify(presenter).initCity()
+//        Mockito.verify(mainView).showLoading()
 
-        testScheduler.advanceTimeBy(2, TimeUnit.SECONDS)
+//        testScheduler.advanceTimeBy(2, TimeUnit.SECONDS)
 
 //        Mockito.verify(mainView).hideLoading()
 //        Mockito.verify(mainView, Mockito.times(2)).hideLoading()
